@@ -1,0 +1,14 @@
+Sun Apr 02 15:12:42 EEST 2023 : DRDA_ListenPort.S, <1527>, <127.0.0.1>, <java.net.BindException: Address already in use: bind>
+J102 : [0] DRDA_ListenPort.S:DRDA_ListenPort.S, <1527>, <127.0.0.1>, <java.net.BindException: Address already in use: bind>
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.apache.derby.iapi.jdbc.DRDAServerStarter.run(DRDAServerStarter.java:236)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.Exception: DRDA_ListenPort.S:DRDA_ListenPort.S, <1527>, <127.0.0.1>, <java.net.BindException: Address already in use: bind>
+	at org.apache.derby.impl.drda.NetworkServerControlImpl.consolePropertyMessageWork(NetworkServerControlImpl.java:3516)
+	at org.apache.derby.impl.drda.NetworkServerControlImpl.consolePropertyMessage(NetworkServerControlImpl.java:2107)
+	at org.apache.derby.impl.drda.NetworkServerControlImpl.blockingStart(NetworkServerControlImpl.java:850)
+	... 6 more
