@@ -163,12 +163,23 @@ public class IMC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String w=weight.getText();//Create a string to store the incoming data
-        float f = Float.parseFloat(w);// to cast the data
-        String h=height.getText();//Create a string to store the incoming data
-        float g = Float.parseFloat(h);// to cast the data
+        String w=weight.getText();
+        float f = Float.parseFloat(w);
+        String h=height.getText();
+        float g = Float.parseFloat(h);
         float s = (f/g/g)*10000;
-        JOptionPane.showMessageDialog(this, "IMC este " +(s));
+        if(s<=18.9){
+        JOptionPane.showMessageDialog(this, "Pacientul este subponderal, IMC: " +(s));}
+        if(s<=24.99 && s>=18.50){
+        JOptionPane.showMessageDialog(this, "Pacientul este normal, IMC: " +(s));}
+        if(s<=29.99 && s>=25.00){
+        JOptionPane.showMessageDialog(this, "Pacientul este supraponderal, IMC: " +(s));}
+        if(s<=34.99 && s>=30.00){
+        JOptionPane.showMessageDialog(this, "Pacientul are Obezitate (gradul I), IMC: " +(s));}
+        if(s<=39.00 && s>=35.00){
+        JOptionPane.showMessageDialog(this, "Pacientul are Obezitate (gradul II), IMC: " +(s));}
+        if(s>=40){
+        JOptionPane.showMessageDialog(this, "Pacientul are Obezitate morbida, IMC: " +(s));}
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void weightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weightActionPerformed

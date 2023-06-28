@@ -72,6 +72,7 @@ public class MADRAS extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 102, 102));
@@ -440,6 +441,7 @@ public class MADRAS extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "INTENSITATE MEDIE   SCOR: " +(s));
         if(s>29)
             JOptionPane.showMessageDialog(this, "INTENSITATE MARCATA/SEVERA   SCOR: " +(s));
+        s=0;
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked

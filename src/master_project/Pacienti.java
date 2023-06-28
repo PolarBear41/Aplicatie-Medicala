@@ -6,7 +6,8 @@ package master_project;
 package Security;
 
 import Security.AES;
-import java.awt.Color;
+import java.awt.Color; 
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -63,9 +64,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import java.text.SimpleDateFormat;
+import java.util.Random;
+import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 
@@ -144,6 +154,7 @@ public class Pacienti extends javax.swing.JFrame {
         SearchBTN = new javax.swing.JButton();
         FMBtn = new javax.swing.JButton();
         StatsBtn = new javax.swing.JButton();
+        ISBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -364,7 +375,7 @@ public class Pacienti extends javax.swing.JFrame {
         });
 
         FMBtn.setBackground(new java.awt.Color(0, 102, 102));
-        FMBtn.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        FMBtn.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         FMBtn.setForeground(new java.awt.Color(255, 255, 255));
         FMBtn.setText("Fisa Medicala");
         FMBtn.setPreferredSize(new java.awt.Dimension(91, 25));
@@ -374,10 +385,23 @@ public class Pacienti extends javax.swing.JFrame {
             }
         });
 
+        StatsBtn.setBackground(new java.awt.Color(0, 102, 102));
+        StatsBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        StatsBtn.setForeground(new java.awt.Color(255, 255, 255));
         StatsBtn.setText("Stats");
         StatsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StatsBtnMouseClicked(evt);
+            }
+        });
+
+        ISBTN.setBackground(new java.awt.Color(0, 102, 102));
+        ISBTN.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        ISBTN.setForeground(new java.awt.Color(255, 255, 255));
+        ISBTN.setText("Istoric");
+        ISBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ISBTNMouseClicked(evt);
             }
         });
 
@@ -396,7 +420,8 @@ public class Pacienti extends javax.swing.JFrame {
                             .addComponent(Mod_Pac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Delete_Pac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Add_Pac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(FMBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(FMBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ISBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 918, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -455,6 +480,7 @@ public class Pacienti extends javax.swing.JFrame {
                     .addComponent(SearchBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Add_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -465,12 +491,13 @@ public class Pacienti extends javax.swing.JFrame {
                         .addComponent(Send_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(FMBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(Pac_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ISBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Pac_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PacDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -594,7 +621,7 @@ public class Pacienti extends javax.swing.JFrame {
         Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB", "andrei1", "andrei1");
         St = Con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-        // get data
+        
         Rs = St.executeQuery("select * from PACIENTTBL");
 
         while (Rs.next()) {
@@ -606,13 +633,13 @@ public class Pacienti extends javax.swing.JFrame {
             String diag = AES.encrypt(Rs.getString("PACDIAG"));
             String rec = AES.encrypt(Rs.getString("PACRECIO"));
 
-            // create new statement for update
+            
             Statement updateSt = Con.createStatement();
 
             String updateQuery = "update PACIENTTBL set PACNAME='" + name + "', PACPREN='" + surname + "', PACCNP=" + cnp + ", PACMAIL='" + mail + "', PACDIAG='" + diag + "', PACRECIO='" + rec + "' where PACID=" + pacId;
             updateSt.executeUpdate(updateQuery);
 
-            // close the update statement
+            
             updateSt.close();
         }
 
@@ -661,38 +688,47 @@ public class Pacienti extends javax.swing.JFrame {
    java.sql.Date MyPacVi, MyReturnDat;
     
     private void Add_PacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_PacMouseClicked
-        // TODO add your handling code here:
-      
-        try{
-            PacVi = PacViz.getDate();
-            MyPacVi = new java.sql.Date(PacVi.getTime());
-            ReturnDat = PacProg.getDate();
-            MyReturnDat = new java.sql.Date(ReturnDat.getTime());
-            
-            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");
-            PreparedStatement add = Con.prepareStatement(
-                    "insert into PACIENTTBL values(?,?,?,?,?,?,?,?,?,(select UPHONE from USERTBL where ONLINE = 1))"
-            );
-            add.setInt(1, Integer.valueOf(PacId.getText()));
-            add.setString(2, PacName.getText());
-            add.setString(3, PacSurn.getText());
-            add.setInt(4, Integer.valueOf(PacCNP.getText()));
-            add.setString(5, PacMail.getText());
-            add.setString(6, PacDiag.getText());
-            add.setString(7, PacRec.getText());
-            //add.setString(2, PacName.getText());
-            add.setDate(8, MyPacVi);
-            add.setDate(9, MyReturnDat);
-          
-    
-            int row = add.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Pacientul a fost adaugat cu succes!");
-            Con.close();
-            SelectPac();
-        }catch(SQLException e)
-        {
-            e.printStackTrace();
+         // TODO add your handling code here:
+  
+    try{
+        PacVi = PacViz.getDate();
+        MyPacVi = new java.sql.Date(PacVi.getTime());
+        ReturnDat = PacProg.getDate();
+        MyReturnDat = new java.sql.Date(ReturnDat.getTime());
+        
+        Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");
+
+       
+        String disorderCode = PacDiag.getText();
+        PreparedStatement getDisorderName = Con.prepareStatement("SELECT NAME FROM MENTAL_DISORDERS WHERE CODE = ?");
+        getDisorderName.setString(1, disorderCode);
+        ResultSet rs = getDisorderName.executeQuery();
+        String disorderName = "";
+        if (rs.next()) {
+            disorderName = rs.getString("NAME");
         }
+
+        PreparedStatement add = Con.prepareStatement(
+                "insert into PACIENTTBL values(?,?,?,?,?,?,?,?,?,(select UPHONE from USERTBL where ONLINE = 1))"
+        );
+        add.setInt(1, Integer.valueOf(PacId.getText()));
+        add.setString(2, PacName.getText());
+        add.setString(3, PacSurn.getText());
+        add.setInt(4, Integer.valueOf(PacCNP.getText()));
+        add.setString(5, PacMail.getText());
+        add.setString(6, disorderName); 
+        add.setString(7, PacRec.getText());
+        add.setDate(8, MyPacVi);
+        add.setDate(9, MyReturnDat);
+
+        int row = add.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Pacientul a fost adaugat cu succes!");
+        Con.close();
+        SelectPac();
+    }catch(SQLException e)
+    {
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_Add_PacMouseClicked
 
     private void Delete_PacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Delete_PacMouseClicked
@@ -742,22 +778,32 @@ public class Pacienti extends javax.swing.JFrame {
     }//GEN-LAST:event_PacTableMouseClicked
 
     private void Mod_PacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Mod_PacMouseClicked
-        if (PacId.getText().isEmpty()||PacName.getText().isEmpty()||PacSurn.getText().isEmpty()||PacCNP.getText().isEmpty()||PacMail.getText().isEmpty()||PacDiag.getText().isEmpty()||PacRec.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Lipsesc informatii despre pacient");
+       if (PacId.getText().isEmpty() || PacName.getText().isEmpty() || PacSurn.getText().isEmpty() || PacCNP.getText().isEmpty() || PacMail.getText().isEmpty() || PacDiag.getText().isEmpty() || PacRec.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Lipsesc informatii despre pacient");
+} else {
+    try {
+        Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");
+
+       
+        String disorderCode = PacDiag.getText();
+        PreparedStatement getDisorderName = Con.prepareStatement("SELECT NAME FROM MENTAL_DISORDERS WHERE CODE = ?");
+        getDisorderName.setString(1, disorderCode);
+        ResultSet rs = getDisorderName.executeQuery();
+        String disorderName = "";
+        if (rs.next()) {
+            disorderName = rs.getString("NAME");
         }
-        else{
-            try{
-                 Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");  
-                 String UpdateQuery = "update andrei1.PACIENTTBL set PACNAME='"+PacName.getText()+"', PACPREN='"+PacSurn.getText()+"', PACCNP="+PacCNP.getText()+", PACMAIL='"+PacMail.getText()+"', PACDIAG='"+PacDiag.getText()+"', PACRECIO='"+PacRec.getText()+"' where PACID ="+PacId.getText();
-                 Statement Add = Con.createStatement();
-                 Add.executeUpdate(UpdateQuery);
-                 JOptionPane.showMessageDialog(this, "Pacient modificat cu succes!");
-                 SelectPac();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+
+        String UpdateQuery = "UPDATE andrei1.PACIENTTBL SET PACNAME='" + PacName.getText() + "', PACPREN='" + PacSurn.getText() + "', PACCNP=" + PacCNP.getText() + ", PACMAIL='" + PacMail.getText() + "', PACDIAG='" + disorderName + "', PACRECIO='" + PacRec.getText() + "' WHERE PACID =" + PacId.getText();
+        Statement Add = Con.createStatement();
+        Add.executeUpdate(UpdateQuery);
+        JOptionPane.showMessageDialog(this, "Pacient modificat cu succes!");
+        SelectPac();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
     }//GEN-LAST:event_Mod_PacMouseClicked
 
     private void Send_MailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Send_MailMouseClicked
@@ -871,9 +917,11 @@ public void replaceTextInWord(String srcPath, String destPath) {
 
     
     private void FMBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FMBtnMouseClicked
-    //String filePath = "C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/Scrisoare_Medicala.pdf";
-    //String outputPath = "C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/Copie_Scrisoare_Medicala.pdf";
-    String filename = "C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/" + PacId.getText() + "_Scrisoare_Medicala.docx";
+    
+    Random rand = new Random();
+    int randNum = rand.nextInt(10000) + 1;
+    String filename = "C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/" + PacId.getText() + "_" + randNum + "_Scrisoare_Medicala.docx";
+    
     replaceTextInWord("C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/Scrisoare_Medicala.docx", filename);
 
     }//GEN-LAST:event_FMBtnMouseClicked
@@ -892,8 +940,67 @@ public void replaceTextInWord(String srcPath, String destPath) {
     }//GEN-LAST:event_jLabel13MouseExited
 
     private void StatsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatsBtnMouseClicked
-        // TODO add your handling code here:
+      try {
+    Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");
+    Statement stmt = con.createStatement();
+
+    String query = "SELECT YEAR(PACIENTTBL.PACDATEVIS), MONTH(PACIENTTBL.PACDATEVIS), COUNT(PACIENTTBL.PACID) " +
+        "FROM PACIENTTBL JOIN USERTBL ON PACIENTTBL.DOCTOR = USERTBL.UPHONE " +
+        "WHERE USERTBL.ONLINE = 1 " +
+        "GROUP BY YEAR(PACIENTTBL.PACDATEVIS), MONTH(PACIENTTBL.PACDATEVIS)";
+
+
+    ResultSet rs = stmt.executeQuery(query);
+
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    while (rs.next()) {
+        String yearMonth = rs.getInt(1) + "-" + String.format("%02d", rs.getInt(2));
+        dataset.addValue(rs.getInt(3), "Pacienti", yearMonth);
+    }
+
+    JFreeChart chart = ChartFactory.createLineChart("Numarul de pacienti lunar",
+            "Luna", "Numar", dataset, PlotOrientation.VERTICAL,
+            true, true, false);
+    
+    NumberAxis yAxis = (NumberAxis) chart.getCategoryPlot().getRangeAxis();
+    yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+    ChartPanel chartPanel = new ChartPanel(chart);
+    JFrame frame = new JFrame();
+    frame.setContentPane(chartPanel);
+    frame.pack();
+    frame.setVisible(true);
+} catch (SQLException throwables) {
+    throwables.printStackTrace();
+}
+
     }//GEN-LAST:event_StatsBtnMouseClicked
+
+    private void ISBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ISBTNMouseClicked
+        
+     String directoryPath = "C:/Users/Asus/Documents/NetBeansProjects/Master_Project_Test_6/src/SM/";
+    File directory = new File(directoryPath);
+    File[] files = directory.listFiles((dir, name) -> name.startsWith(PacId.getText() + "_") && name.endsWith("_Scrisoare_Medicala.docx"));
+
+    if (files.length > 0) {
+        File chosenFile = (File) JOptionPane.showInputDialog(null, "Selectează fisa medicala pe care dorești să o deschizi:",
+                "Deschide fisa medicala", JOptionPane.QUESTION_MESSAGE, null, files, files[0]);
+
+        if (chosenFile != null) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(chosenFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Deschiderea desktop-ului nu este suportata");
+            }
+        }
+    } else {
+        System.out.println("Fiaa medicala nu exista");
+    }
+    }//GEN-LAST:event_ISBTNMouseClicked
 
     
     /**
@@ -936,6 +1043,7 @@ public void replaceTextInWord(String srcPath, String destPath) {
     private javax.swing.JPanel Buttonclose;
     private javax.swing.JButton Delete_Pac;
     private javax.swing.JButton FMBtn;
+    private javax.swing.JButton ISBTN;
     private javax.swing.JButton Mod_Pac;
     private javax.swing.JTextField PacCNP;
     private javax.swing.JTextField PacDiag;
