@@ -218,26 +218,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (!jCheckBox1.isSelected()) {                                   
         String Query = "select * from andrei1.USERTBL where UNAME='"+UidTb.getText()+"' and UPASS = '"+PasswordTb.getText()+"'";
         try{
-             Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");  
-             St = Con.createStatement();
-             Rs = St.executeQuery(Query);
-             if(Rs.next())
-             {
-                 String UpdateQuery = "update andrei1.USERTBL set ONLINE=1 where UNAME='"+UidTb.getText()+"'";
-                 new MenuR().setVisible(true);
-                 this.dispose();
-                 Statement Add = Con.createStatement();
-                 Add.executeUpdate(UpdateQuery);
-                 
-             }else
-             {
-                 JOptionPane.showMessageDialog(this, "Wrong UserName or Password");
-             }
-        }catch(Exception e)
-        {
+            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Licenta DB","andrei1","andrei1");  
+            St = Con.createStatement();
+            Rs = St.executeQuery(Query);
+            if(Rs.next())
+            {
+                String UpdateQuery = "update andrei1.USERTBL set ONLINE=1 where UNAME='"+UidTb.getText()+"'";
+                new MenuR().setVisible(true);
+                this.dispose();
+                Statement Add = Con.createStatement();
+                Add.executeUpdate(UpdateQuery);
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Wrong UserName or Password");
+            }
+        } catch(Exception e) {
             e.printStackTrace();
+        }
+    }else{
+            new MenuR().setVisible(true);
+                this.dispose();
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
